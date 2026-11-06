@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#6b1e2e" />
+  <title>Entrar — Painel Samba Conecta</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+  <main class="login-pagina">
+    <div class="login-cartao">
+      <aside class="login-marca">
+        <a class="logo" href="index.html" aria-label="Samba Conecta — página inicial">
+          <span class="logo-icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
+          </span>
+          Samba Conecta
+        </a>
+        <h1>Painel administrativo</h1>
+        <p>Acompanhe as opiniões do público, veja os gráficos e descubra como tornar os próximos eventos ainda melhores.</p>
+        <p><strong data-ong-nome>Nome da ONG</strong></p>
+      </aside>
+
+      <section class="login-form-area" aria-labelledby="titulo-login">
+        <h2 id="titulo-login">Entrar</h2>
+        <p>Acesso restrito aos responsáveis pela instituição.</p>
+
+        <div id="login-alerta" class="alerta" role="alert" hidden></div>
+
+        <form id="form-login" novalidate>
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="username" placeholder="voce@exemplo.com" required />
+          </div>
+
+          <div class="campo">
+            <label for="senha">Senha</label>
+            <div class="campo-senha">
+              <input type="password" id="senha" name="senha" autocomplete="current-password" placeholder="Sua senha" required />
+              <button type="button" class="btn-mostrar" id="btn-mostrar-senha" aria-label="Mostrar senha" aria-pressed="false">Mostrar</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primario" id="btn-entrar">Entrar</button>
+        </form>
+
+        <a class="login-voltar" href="index.html">← Voltar ao site</a>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

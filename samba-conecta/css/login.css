@@ -1,0 +1,142 @@
+/* =====================================================================
+   login.css — tela de login do painel administrativo
+   ===================================================================== */
+
+.login-pagina {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: radial-gradient(circle at 12% 12%, rgba(217, 164, 65, 0.22), transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(107, 30, 46, 0.14), transparent 45%), var(--creme);
+}
+
+.login-cartao {
+  width: min(900px, 100%);
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--papel);
+  border: 1px solid var(--borda);
+  box-shadow: var(--sombra-forte);
+  animation: subir 0.5s ease both;
+}
+
+.login-marca {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2.4rem;
+  color: #f6e6e9;
+  background: radial-gradient(circle at 90% 8%, rgba(217, 164, 65, 0.38), transparent 50%),
+    linear-gradient(150deg, var(--vinho-700), var(--vinho-900));
+}
+
+.login-marca .logo {
+  color: #fff;
+}
+
+.login-marca h1 {
+  margin: 0.5rem 0 0;
+  font-size: 1.9rem;
+  color: #fff;
+}
+
+.login-marca p {
+  margin: 0;
+  opacity: 0.92;
+}
+
+.login-form-area {
+  padding: clamp(1.6rem, 5vw, 2.8rem);
+}
+
+.login-form-area h2 {
+  font-size: 1.6rem;
+}
+
+.login-form-area > p {
+  color: var(--tinta-suave);
+}
+
+.campo {
+  margin-bottom: 1.1rem;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.campo input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--borda);
+  border-radius: 14px;
+  font: inherit;
+  color: var(--tinta);
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: var(--vinho-700);
+  box-shadow: 0 0 0 4px var(--vinho-100);
+}
+
+.campo-senha {
+  position: relative;
+}
+
+.campo-senha input {
+  padding-right: 5.2rem;
+}
+
+.btn-mostrar {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  padding: 0.35rem 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--vinho-100);
+  color: var(--vinho-700);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-form-area .btn-primario {
+  width: 100%;
+  margin-top: 0.4rem;
+}
+
+.login-voltar {
+  display: block;
+  margin-top: 1.4rem;
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 760px) {
+  .login-cartao {
+    grid-template-columns: 1fr;
+  }
+
+  .login-marca {
+    padding: 1.6rem;
+  }
+
+  .login-marca h1 {
+    font-size: 1.5rem;
+  }
+}

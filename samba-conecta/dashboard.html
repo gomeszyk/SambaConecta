@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#3e0b18" />
+  <title>Painel — Samba Conecta</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <!-- Aparece enquanto confirmamos que você é administrador -->
+  <div class="tela-carregando" id="tela-carregando">
+    <div class="spinner" aria-hidden="true"></div>
+    <p>Verificando acesso…</p>
+  </div>
+
+  <!-- Todo o painel fica escondido até a verificação terminar -->
+  <div id="app" hidden>
+    <header class="dash-topo">
+      <div class="container">
+        <div class="dash-topo-inner">
+          <a class="logo" href="dashboard.html" aria-label="Painel Samba Conecta">
+            <span class="logo-icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
+            </span>
+            Samba Conecta
+          </a>
+          <div class="dash-usuario">
+            <span id="usuario-email"></span>
+            <button type="button" class="btn btn-secundario btn-pequeno" id="btn-sair">Sair</button>
+          </div>
+        </div>
+        <nav class="dash-nav" aria-label="Seções do painel">
+          <button type="button" data-secao="visao" aria-current="true">Visão geral</button>
+          <button type="button" data-secao="respostas">Respostas</button>
+          <button type="button" data-secao="sugestoes">Sugestões e críticas</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <div class="container">
+        <div id="dash-alerta" class="alerta" role="alert" hidden></div>
+        <p id="dados-status" class="dados-status" role="status"></p>
+
+        <!-- ===== VISÃO GERAL ===== -->
+        <section class="dash-secao" id="secao-visao" aria-labelledby="titulo-visao">
+          <div class="secao-cab">
+            <div>
+              <h1 id="titulo-visao">Visão geral</h1>
+              <p>Resumo das opiniões do público nos eventos.</p>
+            </div>
+            <div class="acoes">
+              <button type="button" class="btn btn-secundario btn-pequeno" id="btn-atualizar">Atualizar dados</button>
+              <button type="button" class="btn btn-primario btn-pequeno" data-exportar="todas">Exportar CSV</button>
+            </div>
+          </div>
+
+          <div class="kpis">
+            <article class="kpi">
+              <p class="kpi-rotulo">Total de respostas</p>
+              <p class="kpi-valor" id="kpi-total">…</p>
+              <p class="kpi-nota">Pesquisas enviadas</p>
+            </article>
+            <article class="kpi kpi-positivo">
+              <p class="kpi-rotulo">Avaliações positivas</p>
+              <p class="kpi-valor" id="kpi-positivas">…</p>
+              <p class="kpi-nota">“Excelente” ou “Boa” nas 4 avaliações</p>
+            </article>
+            <article class="kpi kpi-negativo">
+              <p class="kpi-rotulo">Avaliações negativas</p>
+              <p class="kpi-valor" id="kpi-negativas">…</p>
+              <p class="kpi-nota">“Ruim” ou “Muito ruim” nas 4 avaliações</p>
+            </article>
+            <article class="kpi">
+              <p class="kpi-rotulo">Sugestões recebidas</p>
+              <p class="kpi-valor" id="kpi-sugestoes">…</p>
+              <p class="kpi-nota">Respostas com críticas ou ideias escritas</p>
+            </article>
+          </div>
+
+          <div class="graficos">
+            <article class="card-grafico">
+              <h3>Organização do evento</h3>
+              <div class="grafico-area">
+                <canvas id="grafico-organizacao" role="img" aria-label="Gráfico de barras com as avaliações da organização do evento"></canvas>
+                <p class="grafico-vazio">Ainda sem respostas</p>
+              </div>
+            </article>
+
+            <article class="card-grafico">
+              <h3>Apresentações musicais</h3>
+              <div class="grafico-area">
+                <canvas id="grafico-musical" role="img" aria-label="Gráfico de barras com as avaliações das apresentações musicais"></canvas>
+                <p class="grafico-vazio">Ainda sem respostas</p>
+              </div>
+            </article>
+
+            <article class="card-grafico">
+              <h3>Atendimento e receptividade</h3>
+              <div class="grafico-area">
+                <canvas id="grafico-atendimento" role="img" aria-label="Gráfico de barras com as avaliações do atendimento"></canvas>
+                <p class="grafico-vazio">Ainda sem respostas</p>
+              </div>
+            </article>
+
+            <article class="card-grafico">
+              <h3>Estrutura física do local</h3>
+              <div class="grafico-area">
+                <canvas id="grafico-estrutura" role="img" aria-label="Gráfico de barras com as avaliações da estrutura física"></canvas>
+                <p class="grafico-vazio">Ainda sem respostas</p>
+              </div>
+            </article>
+
+            <article class="card-grafico">
+              <h3>Frequência dos participantes</h3>
+              <div class="grafico-area">
+                <canvas id="grafico-frequencia" role="img" aria-label="Gráfico de rosca com a frequência de participação"></canvas>
+                <p class="grafico-vazio">Ainda sem respostas</p>
+              </div>
+            </article>
+
+            <article class="card-grafico">
+              <h3>Como conheceram os eventos</h3>
+              <div class="grafico-area">
+                <canvas id="grafico-conheceu" role="img" aria-label="Gráfico de barras com os meios de divulgação"></canvas>
+                <p class="grafico-vazio">Ainda sem respostas</p>
+              </div>
+            </article>
+
+            <article class="card-grafico">
+              <h3>Recomendação dos eventos</h3>
+              <div class="grafico-area">
+                <canvas id="grafico-recomendacao" role="img" aria-label="Gráfico de rosca com a recomendação dos eventos"></canvas>
+                <p class="grafico-vazio">Ainda sem respostas</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ===== RESPOSTAS ===== -->
+        <section class="dash-secao" id="secao-respostas" aria-labelledby="titulo-respostas" hidden>
+          <div class="secao-cab">
+            <div>
+              <h1 id="titulo-respostas">Respostas</h1>
+              <p>Consulte, pesquise e filtre as respostas recebidas.</p>
+            </div>
+            <div class="acoes">
+              <button type="button" class="btn btn-secundario btn-pequeno" data-exportar="filtradas">Exportar CSV (filtradas)</button>
+              <button type="button" class="btn btn-primario btn-pequeno" data-exportar="todas">Exportar CSV (todas)</button>
+            </div>
+          </div>
+
+          <form class="filtros" id="filtros">
+            <div class="filtro-busca">
+              <label for="filtro-busca">Pesquisar</label>
+              <input type="search" id="filtro-busca" placeholder="Palavra em qualquer resposta…" autocomplete="off" />
+            </div>
+            <div>
+              <label for="filtro-avaliacao">Avaliação geral</label>
+              <select id="filtro-avaliacao">
+                <option value="todas">Todas</option>
+                <option value="positiva">Positiva</option>
+                <option value="neutra">Neutra</option>
+                <option value="negativa">Negativa</option>
+              </select>
+            </div>
+            <div>
+              <label for="filtro-recomendacao">Recomendação</label>
+              <select id="filtro-recomendacao"></select>
+            </div>
+            <div>
+              <label for="filtro-ordem">Ordenar por data</label>
+              <select id="filtro-ordem">
+                <option value="recentes">Mais recentes primeiro</option>
+                <option value="antigas">Mais antigas primeiro</option>
+              </select>
+            </div>
+          </form>
+
+          <div class="tabela-wrap">
+            <table class="tabela">
+              <thead>
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Faixa etária</th>
+                  <th scope="col">Avaliação geral</th>
+                  <th scope="col">Recomendaria?</th>
+                  <th scope="col">Comentário</th>
+                  <th scope="col"><span class="sr-only">Ações</span></th>
+                </tr>
+              </thead>
+              <tbody id="tabela-corpo"></tbody>
+            </table>
+          </div>
+
+          <div class="lista-rodape">
+            <span id="contagem-respostas"></span>
+            <button type="button" class="btn btn-secundario btn-pequeno" id="btn-mais" hidden>Mostrar mais</button>
+          </div>
+          <p class="dados-status">A “avaliação geral” é a média das 4 avaliações: 4 ou mais = positiva; de 2,5 a menos de 4 = neutra; abaixo de 2,5 = negativa.</p>
+        </section>
+
+        <!-- ===== SUGESTÕES ===== -->
+        <section class="dash-secao" id="secao-sugestoes" aria-labelledby="titulo-sugestoes" hidden>
+          <div class="secao-cab">
+            <div>
+              <h1 id="titulo-sugestoes">Sugestões e críticas construtivas</h1>
+              <p id="sugestoes-contagem">O que o público escreveu para ajudar a melhorar.</p>
+            </div>
+          </div>
+
+          <div class="abas" role="group" aria-label="Tipo de comentário">
+            <button type="button" data-sug="melhorar" aria-pressed="true">O que pode melhorar</button>
+            <button type="button" data-sug="sugestoes_atividades" aria-pressed="false">Novas atividades</button>
+            <button type="button" data-sug="gostou_mais" aria-pressed="false">O que mais gostaram</button>
+          </div>
+
+          <div class="sugestoes-lista" id="sugestoes-lista"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="rodape">
+      <div class="container rodape-inner">
+        <p><strong data-ong-nome>Nome da ONG</strong> · Samba Conecta © <span data-ano></span></p>
+        <p>Dados protegidos: só administradores autenticados veem as respostas.</p>
+      </div>
+    </footer>
+
+    <!-- Janela com os detalhes de uma resposta -->
+    <dialog id="dialogo-resposta" aria-labelledby="dialogo-titulo">
+      <div class="dialogo-cab">
+        <h2 id="dialogo-titulo">Detalhes da resposta</h2>
+        <button type="button" class="btn btn-secundario btn-pequeno" id="dialogo-fechar">Fechar</button>
+      </div>
+      <div class="dialogo-corpo" id="dialogo-corpo"></div>
+    </dialog>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="js/config.js"></script>
+  <script src="js/labels.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#6b1e2e" />
+  <title>Pesquisa de Satisfação — Samba Conecta</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/formulario.css" />
+</head>
+<body>
+  <header class="topo">
+    <div class="container topo-inner">
+      <a class="logo" href="index.html" aria-label="Samba Conecta — página inicial">
+        <span class="logo-icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
+        </span>
+        Samba Conecta
+      </a>
+      <a class="link-discreto" href="index.html">← Voltar ao início</a>
+    </div>
+  </header>
+
+  <main class="pagina-form">
+    <!-- Cartão do formulário -->
+    <section class="cartao anima" id="cartao-form" aria-labelledby="titulo-pesquisa">
+      <div class="cartao-cabecalho">
+        <h1 id="titulo-pesquisa">Pesquisa de Satisfação — Sua opinião faz a diferença!</h1>
+        <p>
+          Queremos conhecer sua experiência nos eventos realizados pelo nosso grupo de samba. Sua
+          opinião é muito importante para identificarmos pontos positivos e oportunidades de
+          melhoria. Leva apenas alguns minutos!
+        </p>
+      </div>
+
+      <div class="progresso">
+        <div class="progresso-texto">
+          <span id="progresso-texto">Etapa 1</span>
+          <span>Respostas anônimas</span>
+        </div>
+        <div class="progresso-trilho" id="progresso" role="progressbar" aria-label="Progresso da pesquisa" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progresso-barra" id="progresso-barra"></div>
+        </div>
+      </div>
+
+      <form class="form-corpo" id="form-pesquisa" novalidate autocomplete="off">
+        <noscript>
+          <div class="alerta">Este formulário precisa de JavaScript. Ative o JavaScript do navegador para responder.</div>
+        </noscript>
+
+        <div id="aviso-config" class="alerta alerta-info" hidden></div>
+
+        <!-- As etapas e perguntas são montadas por js/formulario.js -->
+        <div id="etapas"></div>
+
+        <!-- Campo-isca contra robôs: pessoas não veem nem preenchem -->
+        <div class="isca" aria-hidden="true">
+          <label>Não preencha este campo
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+
+        <div id="form-alerta" class="alerta" role="alert" hidden></div>
+
+        <div class="form-acoes">
+          <button type="button" class="btn btn-secundario" id="btn-voltar">Voltar</button>
+          <button type="button" class="btn btn-primario" id="btn-proximo">Próxima etapa</button>
+          <button type="submit" class="btn btn-primario" id="btn-enviar" hidden>Enviar respostas</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Tela de sucesso -->
+    <section class="cartao sucesso" id="tela-sucesso" aria-labelledby="titulo-sucesso" hidden>
+      <div class="sucesso-icone" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+      </div>
+      <h2 id="titulo-sucesso" tabindex="-1">Resposta enviada!</h2>
+      <p>Obrigado por participar! Sua opinião ajuda a fortalecer nossa comunidade e valorizar a cultura do samba.</p>
+      <div class="sucesso-acoes">
+        <a class="btn btn-primario" href="index.html">Voltar ao início</a>
+        <button type="button" class="btn btn-secundario" id="btn-outra">Enviar outra resposta</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-inner">
+      <p><strong data-ong-nome>Nome da ONG</strong> · Samba Conecta © <span data-ano></span></p>
+      <p>Não coletamos nome, telefone, CPF nem e-mail.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/labels.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/formulario.js"></script>
+</body>
+</html>

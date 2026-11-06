@@ -1,0 +1,354 @@
+/* =====================================================================
+   formulario.css — página do formulário público de satisfação
+   ===================================================================== */
+
+.pagina-form {
+  padding: clamp(1.5rem, 4vw, 3rem) 0 1rem;
+}
+
+.cartao {
+  width: min(760px, 100% - 2rem);
+  margin-inline: auto;
+  background: var(--papel);
+  border: 1px solid var(--borda);
+  border-radius: 28px;
+  box-shadow: var(--sombra-forte);
+  overflow: hidden;
+}
+
+/* Cabeçalho do cartão */
+.cartao-cabecalho {
+  position: relative;
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+  color: #f6e6e9;
+  background: radial-gradient(circle at 92% 0%, rgba(217, 164, 65, 0.35), transparent 50%),
+    linear-gradient(135deg, var(--vinho-700), var(--vinho-900));
+}
+
+.cartao-cabecalho h1 {
+  margin-bottom: 0.6rem;
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  color: #fff;
+}
+
+.cartao-cabecalho p {
+  margin: 0;
+  max-width: 40rem;
+  font-size: 0.98rem;
+  opacity: 0.95;
+}
+
+/* Barra de progresso */
+.progresso {
+  padding: 1.1rem clamp(1.2rem, 4vw, 2.2rem) 0;
+}
+
+.progresso-texto {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--vinho-700);
+}
+
+.progresso-trilho {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--vinho-100);
+}
+
+.progresso-barra {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ouro-500), var(--vinho-600));
+  transition: width 0.45s ease;
+}
+
+/* Corpo do formulário */
+.form-corpo {
+  padding: clamp(1.2rem, 4vw, 2.2rem);
+}
+
+.etapa {
+  animation: subir 0.4s ease both;
+}
+
+.etapa h2 {
+  margin-bottom: 0.2rem;
+  font-size: 1.45rem;
+}
+
+.etapa h2:focus {
+  outline: none;
+}
+
+.etapa-descricao {
+  margin-bottom: 1.6rem;
+  color: var(--tinta-suave);
+  font-size: 0.95rem;
+}
+
+.pergunta {
+  margin-bottom: 2rem;
+}
+
+.pergunta-titulo {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin: 0 0 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--tinta);
+}
+
+.pergunta-num {
+  flex: none;
+  min-width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ouro-100);
+  border: 1px solid var(--ouro-300);
+  color: #6a4a08;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.opcional {
+  margin-left: 0.4rem;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+}
+
+/* Opções (rádios estilizados) */
+.opcoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.6rem;
+}
+
+.opcao {
+  position: relative;
+  display: block;
+}
+
+.opcao input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.opcao span {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 48px;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--borda);
+  border-radius: 14px;
+  background: #fff;
+  line-height: 1.3;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opcao span::before {
+  content: '';
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #cdbdb0;
+  background: #fff;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.opcao:hover span {
+  border-color: var(--vinho-600);
+}
+
+.opcao input:checked + span {
+  border-color: var(--vinho-700);
+  background: var(--vinho-100);
+  color: var(--vinho-900);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(107, 30, 46, 0.12);
+}
+
+.opcao input:checked + span::before {
+  border-color: var(--vinho-700);
+  background: radial-gradient(var(--vinho-700) 45%, #fff 50%);
+}
+
+.opcao input:focus-visible + span {
+  outline: 3px solid var(--ouro-500);
+  outline-offset: 2px;
+}
+
+/* Campos de texto */
+.campo-texto {
+  width: 100%;
+  min-height: 112px;
+  padding: 0.9rem 1rem;
+  border: 1.5px solid var(--borda);
+  border-radius: 14px;
+  font: inherit;
+  color: var(--tinta);
+  background: #fff;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-texto:focus {
+  outline: none;
+  border-color: var(--vinho-700);
+  box-shadow: 0 0 0 4px var(--vinho-100);
+}
+
+.contador {
+  display: block;
+  margin-top: 0.3rem;
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--tinta-suave);
+}
+
+/* Erros */
+.erro-campo {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--erro);
+}
+
+.pergunta.com-erro .opcao span {
+  border-color: #e9a8a3;
+}
+
+/* Isca para robôs (campo invisível; pessoas nunca o preenchem) */
+.isca {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Botões de navegação */
+.form-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding-top: 1.4rem;
+  border-top: 1px dashed var(--borda);
+}
+
+.form-acoes .btn-primario {
+  margin-left: auto;
+}
+
+.btn.carregando {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn.carregando::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  animation: girar 0.8s linear infinite;
+}
+
+/* Tela de sucesso */
+.sucesso {
+  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.2rem, 4vw, 2.5rem);
+  text-align: center;
+}
+
+.sucesso-icone {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 1.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ouro-100);
+  border: 3px solid var(--ouro-500);
+  animation: pulsar 0.7s ease both;
+}
+
+.sucesso-icone svg {
+  width: 44px;
+  height: 44px;
+  fill: none;
+  stroke: var(--sucesso);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sucesso h2 {
+  font-size: 1.8rem;
+}
+
+.sucesso p {
+  max-width: 30rem;
+  margin: 0 auto 1.6rem;
+  color: var(--tinta-suave);
+  font-size: 1.05rem;
+}
+
+.sucesso-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+@keyframes pulsar {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .opcoes {
+    grid-template-columns: 1fr;
+  }
+
+  .form-acoes .btn {
+    flex: 1 1 100%;
+  }
+
+  .form-acoes .btn-primario {
+    margin-left: 0;
+  }
+
+  .progresso-texto {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+}
