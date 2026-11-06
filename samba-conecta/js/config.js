@@ -8,13 +8,13 @@
 
 const SAMBA_CONFIG = {
   // Supabase > Project Settings > API (ou "Connect") > Project URL
-  SUPABASE_URL: 'COLE_AQUI_A_URL_DO_SEU_PROJETO',
+  SUPABASE_URL: 'https://ohbkwkfjbnbfchnachew.supabase.co',
 
   // Supabase > Project Settings > API Keys > anon (legacy) OU publishable key
-  SUPABASE_ANON_KEY: 'COLE_AQUI_A_CHAVE_ANON_OU_PUBLISHABLE',
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oYmt3a2ZqYm5iZmNobmFjaGV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM5OTYyNzYsImV4cCI6MjEwOTU3MjI3Nn0.70dOOsfW4YUujNRmYQibahB2lFlndic4naoFN0xL_YI',
 
   // Nome oficial da instituição (aparece no topo e no rodapé das páginas)
-  ONG_NOME: 'Nome da ONG (edite em js/config.js)',
+  ONG_NOME: 'Samba Conecta',
 };
 
 const MENSAGEM_CONFIG =
